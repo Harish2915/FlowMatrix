@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Workflow Engine</title>
+
+    <!-- Preconnect to CDNs -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Bootstrap CSS — loaded early -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    />
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Serif+Display&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* Critical inline CSS — prevents flash */
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      html, body { height: 100%; }
+      body {
+        background: #FCF5EE;
+        font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      #root { min-height: 100vh; }
+
+      /* Inline loader so it shows before ANY JS loads */
+      #initial-loader {
+        position: fixed; inset: 0;
+        background: #FCF5EE;
+        display: flex; flex-direction: column;
+        align-items: center; justify-content: center;
+        gap: 16px; z-index: 9999;
+        transition: opacity .3s ease;
+      }
+      #initial-loader.hidden {
+        opacity: 0; pointer-events: none;
+      }
+      .init-logo {
+        width: 52px; height: 52px;
+        background: linear-gradient(135deg, #EE6983, #850E35);
+        border-radius: 16px;
+        display: flex; align-items: center; justify-content: center;
+        box-shadow: 0 8px 24px rgba(238,105,131,.4);
+        animation: logoPulse 1.5s ease-in-out infinite;
+      }
+      .init-logo svg { width: 26px; height: 26px; }
+      .init-spinner {
+        width: 28px; height: 28px;
+        border: 2.5px solid rgba(238,105,131,.2);
+        border-top-color: #EE6983;
+        border-radius: 50%;
+        animation: initSpin .7s linear infinite;
+      }
+      .init-text {
+        font-size: .75rem; font-weight: 600;
+        color: #8a6a6a; letter-spacing: 2px;
+        text-transform: uppercase;
+      }
+      @keyframes initSpin { to { transform: rotate(360deg); } }
+      @keyframes logoPulse {
+        0%, 100% { transform: scale(1); box-shadow: 0 8px 24px rgba(238,105,131,.4); }
+        50%       { transform: scale(1.05); box-shadow: 0 12px 32px rgba(238,105,131,.55); }
+      }
+    </style>
+  </head>
+  <body>
+
+    <!-- Shows INSTANTLY before React loads -->
+    <div id="initial-loader">
+      <div class="init-logo">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2L2 7l10 5 10-5-10-5z" stroke="white" stroke-width="1.5"
+            stroke-linejoin="round"/>
+          <path d="M2 17l10 5 10-5" stroke="white" stroke-width="1.5"
+            stroke-linejoin="round"/>
+          <path d="M2 12l10 5 10-5" stroke="white" stroke-width="1.5"
+            stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="init-spinner"></div>
+      <div class="init-text">WorkFlow Engine</div>
+    </div>
+
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

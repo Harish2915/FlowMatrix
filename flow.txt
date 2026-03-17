@@ -1,0 +1,70 @@
+workflow_engine/
+├── backend/
+│   ├── main.py
+│   ├── database.py
+│   ├── requirements.txt
+│   ├── models/
+│   │   ├── __init__.py
+│   │   ├── user.py
+│   │   ├── workflow.py
+│   │   ├── step.py
+│   │   ├── rule.py
+│   │   ├── execution.py
+│   │   └── execution_log.py
+│   ├── schemas/
+│   │   ├── __init__.py
+│   │   ├── user_schema.py
+│   │   ├── workflow_schema.py
+│   │   ├── step_schema.py
+│   │   ├── rule_schema.py
+│   │   └── execution_schema.py
+│   ├── routers/
+│   │   ├── __init__.py
+│   │   ├── auth.py
+│   │   ├── workflows.py
+│   │   ├── steps.py
+│   │   ├── rules.py
+│   │   └── executions.py
+│   ├── services/
+│   │   ├── __init__.py
+│   │   ├── auth_service.py
+│   │   ├── workflow_service.py
+│   │   ├── rule_engine.py
+│   │   └── execution_engine.py
+│   └── utils/
+│       ├── __init__.py
+│       ├── auth_utils.py
+│       └── condition_parser.py
+├── frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── Navbar.jsx
+│   │   │   ├── Sidebar.jsx
+│   │   │   ├── ProtectedRoute.jsx
+│   │   │   ├── WorkflowList.jsx
+│   │   │   ├── WorkflowEditor.jsx
+│   │   │   ├── StepEditor.jsx
+│   │   │   ├── RuleEditor.jsx
+│   │   │   ├── ExecutionPage.jsx
+│   │   │   ├── ExecutionLogs.jsx
+│   │   │   └── AuditLog.jsx
+│   │   ├── pages/
+│   │   │   ├── Login.jsx
+│   │   │   ├── Register.jsx
+│   │   │   ├── Dashboard.jsx
+│   │   │   ├── Workflows.jsx
+│   │   │   ├── ExecuteWorkflow.jsx
+│   │   │   └── ExecutionDetails.jsx
+│   │   ├── services/
+│   │   │   └── api.js
+│   │   ├── context/
+│   │   │   └── AuthContext.jsx
+│   │   ├── App.jsx
+│   │   ├── main.jsx
+│   │   └── index.css
+│   ├── index.html
+│   ├── package.json
+│   └── vite.config.js
+├── schema.sql
+├── seed_data.sql
+└── README.md
