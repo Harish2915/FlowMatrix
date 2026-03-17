@@ -4,13 +4,13 @@ import { useAuth } from '../context/AuthContext'
 import api from '../services/api'
 
 export default function Login() {
-  const [email,    setEmail]    = useState('')
+  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [error,    setError]    = useState('')
-  const [loading,  setLoading]  = useState(false)
-  const { login }  = useAuth()
-  const navigate   = useNavigate()
-  const location   = useLocation()
+  const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
+  const { login } = useAuth()
+  const navigate = useNavigate()
+  const location = useLocation()
 
   const redirectMsg = location.state?.message || ''
 
@@ -37,9 +37,14 @@ export default function Login() {
 
           {/* Logo */}
           <div className="d-flex align-items-center gap-3 mb-4">
-            <div className="auth-logo-icon">
-              <i className="bi bi-diagram-3-fill" />
+            <div class="init-logo">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2L2 7l10 5 10-5-10-5z" stroke="white" stroke-width="1.5" stroke-linejoin="round" />
+                <path d="M2 17l10 5 10-5" stroke="white" stroke-width="1.5" stroke-linejoin="round" />
+                <path d="M2 12l10 5 10-5" stroke="white" stroke-width="1.5" stroke-linejoin="round" />
+              </svg>
             </div>
+
             <div>
               <div style={{
                 fontFamily: 'var(--font-display)',

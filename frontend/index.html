@@ -7,7 +7,6 @@
   <title>Flow Matrix</title>
   <link rel="icon" type="image/x-icon" href="./Flow_Matrix.png" />
 
-
   <!-- Preconnect to CDNs -->
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
@@ -79,12 +78,12 @@
     .init-logo {
       width: 52px;
       height: 52px;
-      background: linear-gradient(135deg, #EE6983, #850E35);
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
       border-radius: 16px;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 8px 24px rgba(238, 105, 131, .4);
+      box-shadow: 0 8px 24px var(--accent-glow);
       animation: logoPulse 1.5s ease-in-out infinite;
     }
 

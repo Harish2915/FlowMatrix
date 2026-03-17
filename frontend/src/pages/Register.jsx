@@ -30,8 +30,12 @@ export default function Register() {
       <div className="w-100" style={{ maxWidth: 460, position: 'relative', zIndex: 1 }}>
         <div className="auth-card p-4 p-md-5">
           <div className="d-flex align-items-center gap-3 mb-4">
-            <div className="auth-logo-icon">
-              <i className="bi bi-diagram-3-fill" />
+            <div class="init-logo">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2L2 7l10 5 10-5-10-5z" stroke="white" stroke-width="1.5" stroke-linejoin="round" />
+                <path d="M2 17l10 5 10-5" stroke="white" stroke-width="1.5" stroke-linejoin="round" />
+                <path d="M2 12l10 5 10-5" stroke="white" stroke-width="1.5" stroke-linejoin="round" />
+              </svg>
             </div>
             <div>
               <div style={{ fontFamily: 'var(--font-display)', fontSize: '1.4rem', color: 'var(--accent-dark)', lineHeight: 1 }}>Flow Matrix</div>

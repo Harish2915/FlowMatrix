@@ -8,6 +8,7 @@
   --surface: whitesmoke;
   --surface-soft: rgba(107, 116, 113, 0.082);
   --surface-hover: rgba(92, 95, 94, 0.179);
+  --accent-glow: rgba(87, 85, 85, 0.4);
 
   /* PRIMARY THEME */
   --accent: #00C896;
@@ -19,11 +20,11 @@
   --text-muted: #000000;
 
   /* UI COLORS */
-  --border: rgba(0,0,0,0.06);
-  --border-soft: rgba(0,0,0,0.04);
+  --border: rgba(0, 0, 0, 0.06);
+  --border-soft: rgba(0, 0, 0, 0.04);
 
   /* TABLE */
-  --table-header: rgba(0,200,150,0.08);
+  --table-header: rgba(0, 200, 150, 0.08);
   --table-row: whitesmoke;
   --table-row-alt: var(--surface-soft);
   --table-hover: var(--surface-hover);
@@ -33,9 +34,9 @@
   --icon-color: var(--accent);
 
   /* SHADOWS */
-  --shadow-sm: 0 2px 8px rgba(0,122,90,.08);
-  --shadow-md: 0 4px 20px rgba(0,122,90,.12);
-  --shadow-lg: 0 8px 40px rgba(0,122,90,.18);
+  --shadow-sm: 0 2px 8px rgba(0, 122, 90, .08);
+  --shadow-md: 0 4px 20px rgba(0, 122, 90, .12);
+  --shadow-lg: 0 8px 40px rgba(0, 122, 90, .18);
 
   /* FONT */
   --font-main: 'Plus Jakarta Sans', sans-serif;
@@ -319,7 +320,7 @@ body.modal-open-custom {
 
 .sidebar {
   width: var(--sidebar-width) !important;
-  background:  var(--bg-secondary) !important;
+  background: var(--bg-secondary) !important;
   border-right: 1px solid var(--border) !important;
   border-radius: 0 !important;
   box-shadow: none !important;
@@ -708,7 +709,7 @@ body.modal-open-custom {
 .topbar-toggle {
   background: transparent !important;
   border: 1px solid var(--border) !important;
-color:var(--text-soft);
+  color: var(--text-soft);
   border-radius: 8px !important;
   width: 36px !important;
   height: 36px !important;
@@ -830,7 +831,7 @@ color:var(--text-soft);
   border-radius: 12px !important;
   transition: box-shadow .2s, transform .2s !important;
   background: whitesmoke !important;
-  border:1px solid var(--border);
+  border: 1px solid var(--border);
   box-shadow: var(--shadow-sm);
   /* border: 1px solid var(--surface-border) !important;
   box-shadow: 0 1px 4px rgba(16, 24, 40, .06) !important;
@@ -968,7 +969,7 @@ color:var(--text-soft);
 }
 
 .table-custom thead tr {
-   background: var(--bg-secondary) !important;
+  background: var(--bg-secondary) !important;
 }
 
 .table-custom thead th {
@@ -999,11 +1000,11 @@ color:var(--text-soft);
   background: rgba(252, 245, 238, .7) !important;
 }
 
-.table-custom tbody tr:nth-child(odd) td{
+.table-custom tbody tr:nth-child(odd) td {
   background: var(--table-row);
 }
 
-.table-custom tbody tr:nth-child(even) td{
+.table-custom tbody tr:nth-child(even) td {
   background: var(--table-row-alt);
 }
 
@@ -1196,7 +1197,7 @@ textarea.form-control-custom {
   transition: all .2s;
   flex-shrink: 0;
   text-decoration: none;
-    background: var(--icon-bg);
+  background: var(--icon-bg);
   color: var(--icon-color);
 }
 
@@ -1222,7 +1223,7 @@ textarea.form-control-custom {
 
 .icon-btn.edit:hover {
   background: var(--accent);
-  color:white;
+  color: white;
   transform: scale(1.1);
 }
 
@@ -1234,13 +1235,13 @@ textarea.form-control-custom {
 
 .icon-btn.run:hover {
   background: var(--accent);
-  color:white;
+  color: white;
   transform: scale(1.1);
 }
 
 .icon-btn.view:hover {
   background: var(--accent);
-  color:white;
+  color: white;
   transform: scale(1.1);
 }
 
@@ -2136,7 +2137,7 @@ pre.data-pre {
 
 .sidebar-link.active {
   background: var(--accent) !important;
-  color:white !important;
+  color: white !important;
   /* color: var(--accent-dark) !important; */
   font-weight: 600;
   box-shadow: 0 2px 10px rgba(238, 105, 131, .12);
@@ -2198,7 +2199,7 @@ pre.data-pre {
 .user-name {
   font-size: .82rem;
   font-weight: 600;
-color:var(--text-strong);
+  color: var(--text-strong);
   line-height: 1.2;
 }
 
@@ -2358,7 +2359,7 @@ color:var(--text-strong);
   border-bottom: 1px solid var(--surface-border) !important;
 }
 
-.table-custom tbody tr:hover td{
+.table-custom tbody tr:hover td {
   background: var(--table-hover) !important;
 }
 
@@ -2430,68 +2431,68 @@ color:var(--text-strong);
   margin-left: 240px !important;
 }
 
-.input-icon-wrap{
+.input-icon-wrap {
   position: relative;
 }
 
-.input-icon-wrap .input-icon{
-  position:absolute;
-  left:14px;
-  top:50%;
-  transform:translateY(-50%);
-  color:var(--accent);
-  font-size:1rem;
-  pointer-events:none;
+.input-icon-wrap .input-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--accent);
+  font-size: 1rem;
+  pointer-events: none;
 }
 
-.input-icon-wrap input{
-  padding-left:40px !important;
+.input-icon-wrap input {
+  padding-left: 40px !important;
 }
 
 /* PASSWORD FIELD */
-.pwd-field-wrap{
-  position:relative;
-  width:100%;
+.pwd-field-wrap {
+  position: relative;
+  width: 100%;
 }
 
-.pwd-icon{
-  position:absolute;
-  left:14px;
-  top:50%;
-  transform:translateY(-50%);
-  color:var(--accent);
-  pointer-events:none;
+.pwd-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--accent);
+  pointer-events: none;
 }
 
-.pwd-input{
-  width:100%;
-  padding-left:46px !important;
-  padding-right:42px !important;
+.pwd-input {
+  width: 100%;
+  padding-left: 46px !important;
+  padding-right: 42px !important;
 }
 
 /* toggle button */
-.pwd-toggle{
-  position:absolute;
-  right:10px;
-  top:50%;
-  transform:translateY(-50%);
-  background:none;
-  border:none;
-  color:var(--text-muted);
-  cursor:pointer;
+.pwd-toggle {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
 }
 
 /* mobile adjustment */
-@media (max-width:576px){
+@media (max-width:576px) {
 
-  .pwd-input{
-    padding-left:42px !important;
-    padding-right:36px !important;
-    font-size:.9rem;
+  .pwd-input {
+    padding-left: 42px !important;
+    padding-right: 36px !important;
+    font-size: .9rem;
   }
 
-  .pwd-icon{
-    left:10px;
+  .pwd-icon {
+    left: 10px;
   }
 
 }
