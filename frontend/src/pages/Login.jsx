@@ -47,13 +47,13 @@ export default function Login() {
                 color: 'var(--accent-dark)',
                 lineHeight: 1,
               }}>
-                WorkFlow
+                Flow Matrix
               </div>
               <div style={{
                 fontSize: '.62rem', color: 'var(--text-muted)',
                 letterSpacing: '2px', textTransform: 'uppercase',
               }}>
-                Engine
+
               </div>
             </div>
           </div>

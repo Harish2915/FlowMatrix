@@ -34,8 +34,8 @@ export default function Register() {
               <i className="bi bi-diagram-3-fill" />
             </div>
             <div>
-              <div style={{ fontFamily: 'var(--font-display)', fontSize: '1.4rem', color: 'var(--accent-dark)', lineHeight: 1 }}>WorkFlow</div>
-              <div style={{ fontSize: '.62rem', color: 'var(--text-muted)', letterSpacing: '2px', textTransform: 'uppercase' }}>Engine</div>
+              <div style={{ fontFamily: 'var(--font-display)', fontSize: '1.4rem', color: 'var(--accent-dark)', lineHeight: 1 }}>Flow Matrix</div>
+              {/* <div style={{ fontSize: '.62rem', color: 'var(--text-muted)', letterSpacing: '2px', textTransform: 'uppercase' }}>Engine</div> */}
             </div>
           </div>
 
