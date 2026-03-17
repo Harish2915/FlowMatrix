@@ -184,6 +184,16 @@ export default function SettingsModal({ defaultTab = 'profile', onClose }) {
         }
     }, [])
 
+    useEffect(() => {
+        const savedTheme = localStorage.getItem('wf_theme_data')
+
+        if (savedTheme) {
+            const theme = JSON.parse(savedTheme)
+            applyTheme(theme)
+            setActiveTheme(theme.key)
+        }
+    }, [])
+
     // ── Password field ────────────────────────
     const PwdField = ({ label, value, onChange, show, onToggle, placeholder }) => (
         <div className="mb-3">
@@ -593,19 +603,19 @@ export default function SettingsModal({ defaultTab = 'profile', onClose }) {
                                     <div className="password-strength">
                                         <div
                                             className={`strength-bar ${newPwd.length < 6
-                                                    ? "weak"
-                                                    : newPwd.length < 10
-                                                        ? "medium"
-                                                        : "strong"
+                                                ? "weak"
+                                                : newPwd.length < 10
+                                                    ? "medium"
+                                                    : "strong"
                                                 }`}
                                         />
 
                                         <span
                                             className={`strength-text ${newPwd.length < 6
-                                                    ? "weak"
-                                                    : newPwd.length < 10
-                                                        ? "medium"
-                                                        : "strong"
+                                                ? "weak"
+                                                : newPwd.length < 10
+                                                    ? "medium"
+                                                    : "strong"
                                                 }`}
                                         >
                                             {newPwd.length < 6
