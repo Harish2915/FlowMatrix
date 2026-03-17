@@ -8,7 +8,7 @@
 
 > Watch the full walkthrough — registration, workflow creation, steps & rules configuration, execution with dynamic input form, and execution detail logs.
 
-[![Flow Matrix Demo Video](./Demo/Dashboard.png)](./Demo/Flow-Matrix.mp4)
+[![Flow Matrix Demo Video](./Demo/Flow-Matrix.mp4)]
 
 ---
 
