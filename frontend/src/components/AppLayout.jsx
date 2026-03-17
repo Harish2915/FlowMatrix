@@ -13,7 +13,7 @@ const ROUTE_TITLES = {
 function getTitle(pathname) {
   if (pathname.startsWith('/execute/')) return 'Execute Workflow'
   if (pathname.startsWith('/executions/')) return 'Execution Details'
-  return ROUTE_TITLES[pathname] ?? 'WorkFlow Engine'
+  return ROUTE_TITLES[pathname] ?? 'Flow Matrix'
 }
 
 export default function AppLayout({ children }) {

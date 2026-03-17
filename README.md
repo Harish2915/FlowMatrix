@@ -1,4 +1,4 @@
-# Flow Matrix — Workflow Engine
+# Flow Matrix
 
 > A full-stack workflow automation platform to design processes, define routing rules, execute workflows, and track every step with complete audit logs.
 

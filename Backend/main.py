@@ -8,7 +8,7 @@ Base.metadata.create_all(bind=engine)
 
 from routers import auth, workflows, steps, rules, executions
 
-app = FastAPI(title="Workflow Engine API", version="1.0.0")
+app = FastAPI(title="Flow Matrix API", version="1.0.0")
 
 # CORS — must be added BEFORE routes
 app.add_middleware(
@@ -33,4 +33,4 @@ app.include_router(executions.router)
 
 @app.get("/")
 def root():
-    return {"message": "Workflow Engine API Running"}
+    return {"message": "Flow Matrix API Running"}
