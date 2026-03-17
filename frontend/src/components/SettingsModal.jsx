@@ -11,15 +11,46 @@ const THEMES = [
     { key: 'sunset', label: 'Sunset', bg: '#FCF0EE', sec: '#FFC4A0', acc: '#EE8369', dark: '#852A0E' },
     { key: 'violet', label: 'Violet', bg: '#F5EEFC', sec: '#DCC4FF', acc: '#9869EE', dark: '#3D0E85' },
     { key: 'slate', label: 'Slate', bg: '#EEEEF5', sec: '#C4C4FF', acc: '#6969EE', dark: '#0E0E85' },
+    { key: 'crimson', label: 'Crimson', bg: '#FFF0F0', sec: '#FFB3B3', acc: '#E63946', dark: '#9B1D20' },
+    { key: 'teal', label: 'Teal', bg: '#EFFAF8', sec: '#A8E6DF', acc: '#0E9F8E', dark: '#0A5F55' },
+    { key: 'amber', label: 'Amber', bg: '#FFFBEE', sec: '#FFE5A0', acc: '#F59E0B', dark: '#92400E' },
+    { key: 'emerald', label: 'Emerald', bg: '#F0FDF4', sec: '#BBF7D0', acc: '#10B981', dark: '#065F46' },
+    { key: 'sakura', label: 'Sakura', bg: '#FFF5F8', sec: '#FFD6E5', acc: '#FF6FA8', dark: '#B5174D' },
+    { key: 'midnight', label: 'Midnight', bg: '#1A1D2E', sec: '#2D3156', acc: '#7C83FF', dark: '#4A52C4' },
+    { key: 'copper', label: 'Copper', bg: '#FDF6F0', sec: '#F5CBA7', acc: '#CA6F1E', dark: '#784212' },
+    { key: 'indigo', label: 'Indigo', bg: '#EEF0FF', sec: '#C7CEFF', acc: '#4F5BD5', dark: '#2C3494' },
+    { key: 'mint', label: 'Mint', bg: '#F0FFF8', sec: '#B2F5E0', acc: '#00C896', dark: '#007A5A' },
+    { key: 'graphite', label: 'Graphite', bg: '#F4F4F6', sec: '#D1D1DB', acc: '#6E6E8A', dark: '#3A3A52' },
+    { key: 'coral', label: 'Coral', bg: '#FFF4F2', sec: '#FFCDC7', acc: '#FF6B55', dark: '#C0392B' },
+    { key: 'aurora', label: 'Aurora', bg: '#F0F8FF', sec: '#C8E8FF', acc: '#0EA5E9', dark: '#0369A1' },
 ]
 
+function hexToRgb(hex) {
+    const r = parseInt(hex.slice(1, 3), 16)
+    const g = parseInt(hex.slice(3, 5), 16)
+    const b = parseInt(hex.slice(5, 7), 16)
+    return { r, g, b }
+}
+
 function applyTheme(theme) {
-    const r = document.documentElement
-    r.style.setProperty('--bg-main', theme.bg)
-    r.style.setProperty('--bg-secondary', theme.sec)
-    r.style.setProperty('--accent', theme.acc)
-    r.style.setProperty('--accent-dark', theme.dark)
-    r.style.setProperty('--accent-hover', theme.dark)
+    const root = document.documentElement
+    // Hex vars
+    root.style.setProperty('--bg-main', theme.bg)
+    root.style.setProperty('--bg-secondary', theme.sec)
+    root.style.setProperty('--accent', theme.acc)
+    root.style.setProperty('--accent-dark', theme.dark)
+    root.style.setProperty('--accent-hover', theme.dark)
+    // RGB channel vars — every rgba() in the CSS uses these
+    const acc = hexToRgb(theme.acc)
+    const drk = hexToRgb(theme.dark)
+    const bgm = hexToRgb(theme.bg)
+    const bgs = hexToRgb(theme.sec)
+    root.style.setProperty('--ac-r', acc.r); root.style.setProperty('--ac-g', acc.g); root.style.setProperty('--ac-b', acc.b)
+    root.style.setProperty('--dk-r', drk.r); root.style.setProperty('--dk-g', drk.g); root.style.setProperty('--dk-b', drk.b)
+    root.style.setProperty('--bm-r', bgm.r); root.style.setProperty('--bm-g', bgm.g); root.style.setProperty('--bm-b', bgm.b)
+    root.style.setProperty('--bs-r', bgs.r); root.style.setProperty('--bs-g', bgs.g); root.style.setProperty('--bs-b', bgs.b)
+    // bg-card stays white unless midnight theme
+    root.style.setProperty('--bg-card', theme.key === 'midnight' ? '#1e2235' : '#ffffff')
     localStorage.setItem('wf_theme', theme.key)
     localStorage.setItem('wf_theme_data', JSON.stringify(theme))
 }
@@ -55,7 +86,7 @@ export default function SettingsModal({ defaultTab = 'profile', onClose }) {
 
     // ── Theme state ──
     const [activeTheme, setActiveTheme] = useState(
-        localStorage.getItem('wf_theme') || 'rose'
+        localStorage.getItem('wf_theme') || 'mint'
     )
     const [themeMsg, setThemeMsg] = useState({ type: '', text: '' })
 
@@ -157,27 +188,24 @@ export default function SettingsModal({ defaultTab = 'profile', onClose }) {
     const PwdField = ({ label, value, onChange, show, onToggle, placeholder }) => (
         <div className="mb-3">
             <label className="form-label-custom">{label}</label>
-            <div style={{ position: 'relative' }}>
+
+            <div className="pwd-field-wrap">
+                <i className="bi bi-lock pwd-icon"></i>
+
                 <input
-                    className="form-control-custom w-100"
-                    style={{ paddingLeft: 38, paddingRight: 40 }}
-                    type={show ? 'text' : 'password'}
+                    className="form-control-custom pwd-input"
+                    type={show ? "text" : "password"}
                     value={value}
-                    onChange={e => onChange(e.target.value)}
+                    onChange={(e) => onChange(e.target.value)}
                     placeholder={placeholder}
                 />
-                <i className="bi bi-lock" style={{
-                    position: 'absolute', left: 12, top: '50%',
-                    transform: 'translateY(-50%)',
-                    color: 'var(--accent)', pointerEvents: 'none',
-                }} />
-                <button type="button" onClick={onToggle} style={{
-                    position: 'absolute', right: 10, top: '50%',
-                    transform: 'translateY(-50%)',
-                    background: 'none', border: 'none',
-                    color: 'var(--text-muted)', cursor: 'pointer', padding: 4,
-                }}>
-                    <i className={`bi bi-eye${show ? '-slash' : ''}`} />
+
+                <button
+                    type="button"
+                    className="pwd-toggle"
+                    onClick={onToggle}
+                >
+                    <i className={`bi bi-eye${show ? "-slash" : ""}`}></i>
                 </button>
             </div>
         </div>
@@ -249,39 +277,33 @@ export default function SettingsModal({ defaultTab = 'profile', onClose }) {
                                 {/* Name */}
                                 <div className="mb-3">
                                     <label className="form-label-custom">Full Name</label>
-                                    <div style={{ position: 'relative' }}>
+
+                                    <div className="input-icon-wrap">
+                                        <i className="bi bi-person input-icon"></i>
+
                                         <input
-                                            className="form-control-custom w-100"
-                                            style={{ paddingLeft: 38 }}
+                                            className="form-control-custom"
                                             value={name}
-                                            onChange={e => setName(e.target.value)}
+                                            onChange={(e) => setName(e.target.value)}
                                             placeholder="Your full name"
                                         />
-                                        <i className="bi bi-person" style={{
-                                            position: 'absolute', left: 12, top: '50%',
-                                            transform: 'translateY(-50%)',
-                                            color: 'var(--accent)', pointerEvents: 'none',
-                                        }} />
                                     </div>
                                 </div>
 
                                 {/* Email */}
                                 <div className="mb-4">
                                     <label className="form-label-custom">Email Address</label>
-                                    <div style={{ position: 'relative' }}>
+
+                                    <div className="input-icon-wrap">
+                                        <i className="bi bi-envelope input-icon"></i>
+
                                         <input
-                                            className="form-control-custom w-100"
-                                            style={{ paddingLeft: 38 }}
                                             type="email"
+                                            className="form-control-custom"
                                             value={email}
-                                            onChange={e => setEmail(e.target.value)}
+                                            onChange={(e) => setEmail(e.target.value)}
                                             placeholder="your@email.com"
                                         />
-                                        <i className="bi bi-envelope" style={{
-                                            position: 'absolute', left: 12, top: '50%',
-                                            transform: 'translateY(-50%)',
-                                            color: 'var(--accent)', pointerEvents: 'none',
-                                        }} />
                                     </div>
                                 </div>
 
@@ -534,73 +556,92 @@ export default function SettingsModal({ defaultTab = 'profile', onClose }) {
                                 <Msg msg={passwordMsg} />
 
                                 {/* Security notice */}
-                                <div style={{
-                                    background: 'rgba(59,130,246,.06)',
-                                    border: '1px solid rgba(59,130,246,.18)',
-                                    borderRadius: 10, padding: '10px 14px',
-                                    fontSize: '.78rem', color: '#1d4ed8',
-                                    display: 'flex', gap: 8, alignItems: 'flex-start',
-                                    marginBottom: '1.25rem',
-                                }}>
-                                    <i className="bi bi-shield-check-fill mt-1" style={{ flexShrink: 0 }} />
-                                    <span>After changing your password you will be <strong>logged out automatically</strong>.</span>
+                                <div className="security-notice mb-2">
+                                    <i className="bi bi-shield-check-fill notice-icon"></i>
+                                    <span>
+                                        After changing your password you will be
+                                        <strong> logged out automatically</strong>.
+                                    </span>
                                 </div>
 
-                                <PwdField
-                                    label="Current Password"
-                                    value={curPwd}
-                                    onChange={setCurPwd}
-                                    show={showCur}
-                                    onToggle={() => setShowCur(s => !s)}
-                                    placeholder="Enter current password"
-                                />
+                                {/* Current Password */}
+                                <div className="mb-3">
+                                    <label className="form-label-custom">Current Password</label>
+                                    <input
+                                        type="password"
+                                        className="form-control-custom w-100"
+                                        value={curPwd}
+                                        onChange={(e) => setCurPwd(e.target.value)}
+                                        placeholder="Enter current password"
+                                    />
+                                </div>
 
-                                <PwdField
-                                    label="New Password"
-                                    value={newPwd}
-                                    onChange={setNewPwd}
-                                    show={showNew}
-                                    onToggle={() => setShowNew(s => !s)}
-                                    placeholder="Min 6 characters"
-                                />
+                                {/* New Password */}
+                                <div className="mb-3">
+                                    <label className="form-label-custom">New Password</label>
+                                    <input
+                                        type="password"
+                                        className="form-control-custom w-100"
+                                        value={newPwd}
+                                        onChange={(e) => setNewPwd(e.target.value)}
+                                        placeholder="Min 6 characters"
+                                    />
+                                </div>
 
                                 {/* Strength bar */}
                                 {newPwd && (
-                                    <div style={{ marginTop: -8, marginBottom: 12 }}>
-                                        <div style={{
-                                            height: 4, borderRadius: 4, transition: 'all .3s',
-                                            background: newPwd.length < 6 ? '#ef4444'
-                                                : newPwd.length < 10 ? '#f59e0b' : '#22c55e',
-                                            width: newPwd.length < 6 ? '30%'
-                                                : newPwd.length < 10 ? '65%' : '100%',
-                                        }} />
-                                        <span style={{
-                                            fontSize: '.7rem',
-                                            color: newPwd.length < 6 ? '#b91c1c'
-                                                : newPwd.length < 10 ? '#92400e' : '#15803d',
-                                        }}>
-                                            {newPwd.length < 6 ? '⚠ Weak' : newPwd.length < 10 ? '~ Medium' : '✓ Strong'}
+                                    <div className="password-strength">
+                                        <div
+                                            className={`strength-bar ${newPwd.length < 6
+                                                    ? "weak"
+                                                    : newPwd.length < 10
+                                                        ? "medium"
+                                                        : "strong"
+                                                }`}
+                                        />
+
+                                        <span
+                                            className={`strength-text ${newPwd.length < 6
+                                                    ? "weak"
+                                                    : newPwd.length < 10
+                                                        ? "medium"
+                                                        : "strong"
+                                                }`}
+                                        >
+                                            {newPwd.length < 6
+                                                ? "⚠ Weak"
+                                                : newPwd.length < 10
+                                                    ? "~ Medium"
+                                                    : "✓ Strong"}
                                         </span>
                                     </div>
                                 )}
 
-                                <PwdField
-                                    label="Confirm New Password"
-                                    value={confPwd}
-                                    onChange={setConfPwd}
-                                    show={showConf}
-                                    onToggle={() => setShowConf(s => !s)}
-                                    placeholder="Repeat new password"
-                                />
+                                {/* Confirm Password */}
+                                <div className="mb-3">
+                                    <label className="form-label-custom">Confirm New Password</label>
+                                    <input
+                                        type="password"
+                                        className="form-control-custom w-100"
+                                        value={confPwd}
+                                        onChange={(e) => setConfPwd(e.target.value)}
+                                        placeholder="Repeat new password"
+                                    />
+                                </div>
 
                                 {/* Match indicator */}
                                 {confPwd && (
-                                    <div style={{
-                                        fontSize: '.72rem', marginTop: -8, marginBottom: 12,
-                                        color: confPwd === newPwd ? '#15803d' : '#b91c1c',
-                                    }}>
-                                        <i className={`bi bi-${confPwd === newPwd ? 'check' : 'x'}-circle me-1`} />
-                                        {confPwd === newPwd ? 'Passwords match' : 'Passwords do not match'}
+                                    <div
+                                        className={`password-match ${confPwd === newPwd ? "match" : "no-match"
+                                            }`}
+                                    >
+                                        <i
+                                            className={`bi bi-${confPwd === newPwd ? "check" : "x"
+                                                }-circle me-1`}
+                                        />
+                                        {confPwd === newPwd
+                                            ? "Passwords match"
+                                            : "Passwords do not match"}
                                     </div>
                                 )}
 
@@ -609,14 +650,20 @@ export default function SettingsModal({ defaultTab = 'profile', onClose }) {
                                     onClick={handlePasswordSave}
                                     disabled={savingPassword}
                                 >
-                                    {savingPassword
-                                        ? <><span className="spinner-border spinner-border-sm me-2" />Changing…</>
-                                        : <><i className="bi bi-shield-check me-1" />Change Password</>
-                                    }
+                                    {savingPassword ? (
+                                        <>
+                                            <span className="spinner-border spinner-border-sm me-2" />
+                                            Changing…
+                                        </>
+                                    ) : (
+                                        <>
+                                            <i className="bi bi-shield-check me-1" />
+                                            Change Password
+                                        </>
+                                    )}
                                 </button>
                             </div>
                         )}
-
                     </div>
                 </div>
             </div>

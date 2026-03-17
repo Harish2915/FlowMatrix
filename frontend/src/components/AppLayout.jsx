@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
 import Sidebar from './Sidebar'
 import Navbar from './Navbar'
@@ -20,23 +20,29 @@ export default function AppLayout({ children }) {
   const location = useLocation()
   const title = getTitle(location.pathname)
 
-  const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 1200)
-  const [sidebarOpen, setSidebarOpen] = useState(window.innerWidth >= 1200)
+  // Initialise without flicker
+  const isDesktopInit = window.innerWidth >= 1200
+  const [isDesktop,   setIsDesktop]   = useState(isDesktopInit)
+  const [sidebarOpen, setSidebarOpen] = useState(isDesktopInit)
+
+  // Resize: open on desktop, close on mobile
   useEffect(() => {
     const onResize = () => {
       const desktop = window.innerWidth >= 1200
       setIsDesktop(desktop)
-      if (desktop) setSidebarOpen(true)
-      else setSidebarOpen(false)
+      setSidebarOpen(desktop) // open on desktop, closed on mobile
     }
     window.addEventListener('resize', onResize)
     return () => window.removeEventListener('resize', onResize)
   }, [])
 
-
-  // Close on route change on mobile
+  // Close on route change (mobile only)
+  const prevPath = useRef(location.pathname)
   useEffect(() => {
-    if (!isDesktop) setSidebarOpen(false)
+    if (!isDesktop && prevPath.current !== location.pathname) {
+      setSidebarOpen(false)
+    }
+    prevPath.current = location.pathname
   }, [location.pathname, isDesktop])
 
   const toggleSidebar = () => setSidebarOpen(p => !p)
@@ -44,7 +50,7 @@ export default function AppLayout({ children }) {
   return (
     <div className="app-wrapper">
 
-      {/* ── Backdrop mobile ── */}
+      {/* Backdrop — mobile only, plain dark overlay, NO blur */}
       {sidebarOpen && !isDesktop && (
         <div
           className="sidebar-backdrop show"
@@ -52,7 +58,7 @@ export default function AppLayout({ children }) {
         />
       )}
 
-      {/* ── Sidebar ── */}
+      {/* Sidebar */}
       <div className={`sidebar-container ${sidebarOpen ? 'open' : 'collapsed'}`}>
         <Sidebar
           onClose={() => setSidebarOpen(false)}
@@ -60,7 +66,7 @@ export default function AppLayout({ children }) {
         />
       </div>
 
-      {/* ── Main content ── */}
+      {/* Main */}
       <div className="main-content">
         <Navbar
           title={title}
